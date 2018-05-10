@@ -1,11 +1,10 @@
-A Vim Plugin for Lively Previewing LaTeX PDF Output
+A Vim Plugin for Lively Previewing Pandoc PDF Output
 ===================================================
 
-This plugin provides a live preview of the output PDF of your LaTeX file. The
+This plugin provides a live preview of the output PDF of your Pandoc file. The
 display of the output PDF file will be updated lively as you type (just hold
 the cursor and you will see the PDF file updated). Currently,
-vim-latex-live-preview only support UNIX-like systems. [Please let me know if
-you have any suggestions.](.github/CONTRIBUTING.md)
+vim-pandoc-live-preview only support UNIX-like systems. 
 
 Table of Contents
 -----------------
@@ -13,8 +12,6 @@ Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
-- [Known issues](#known-issues)
-- [Screenshot](#screenshot)
 
 Installation
 ------------
@@ -29,8 +26,8 @@ Add the plugin in the vim-plug section of your `~/.vimrc`:
 ```vim
 call plug#begin('~/.vim/plugged')
 [...]
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" A Vim Plugin for Lively Previewing Pandoc PDF Output
+Plug 'ragon000/vim-pandoc-live-preview', { 'for': 'md' }
 [...]
 call plug#end()
 ```
@@ -49,8 +46,8 @@ Add the plugin in the Vundle section of your `~/.vimrc`:
 ```vim
 call vundle#begin()
 [...]
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plugin 'xuhdev/vim-latex-live-preview'
+" A Vim Plugin for Lively Previewing Pandoc PDF Output
+Plugin 'ragon000/vim-latex-live-preview'
 [...]
 call vundle#end()
 ```
@@ -65,6 +62,7 @@ Then reload the config and install the new plugin. Run inside `vim`:
 ### Manually
 
 Copy `plugin/latexlivepreview.vim` to `~/.vim/plugin`.
+
 
 Usage
 -----
@@ -94,7 +92,7 @@ Configuration
 
 ### PDF viewer
 
-By default, you need to have [evince][] or [okular][] installed as pdf viewers.
+By default, you need to have [mupdf][], [evince][] or [okular][] installed as pdf viewers.
 But you can specify your own viewer by setting `g:livepreview_previewer`
 option in your `.vimrc`:
 
@@ -103,54 +101,9 @@ let g:livepreview_previewer = 'your_viewer'
 ```
 
 Please note that not every pdf viewer could work with this plugin. Currently
-evince and okular are known to work well. You can find a list of known working
-pdf viewers [here](https://github.com/xuhdev/vim-latex-live-preview/wiki/Known-Working-PDF-Viewers).
-
-### TeX engine
-
-`LLP` uses `pdflatex` as default engine to output a PDF to be previewed. It
-fallbacks to `xelatex` if `pdflatex` is not present. These defaults can be
-overridden by setting `g:livepreview_engine` variable:
-
-```vim
-let g:livepreview_engine = 'your_engine' . ' [options]'
-```
-
-Known issues
-------------
-
-### Swap error
-
-An error `E768: Swap file exists` may occur. See
-[issue #7](https://github.com/xuhdev/vim-latex-live-preview/issues/7) to avoid
-swap filename collision.
-
-### Project tree
-
-Currently, root file must be in the same directory or upper in the project tree
-(otherwise, one has to save file to update the preview).
-
-### E492: Not an editor command: LLPStartPreview
-Check Issue [#12](https://github.com/xuhdev/vim-latex-live-preview/issues/12), provided the plugin is correctly installed, this is likely a **Python** issue.
-
-### Python-related Issues 
-
-* 2.7 vs 3.5: 
-This is an ongoing issue: [#12](https://github.com/xuhdev/vim-latex-live-preview/issues/12)
-
-* python/dyn
-See Issue [#24](https://github.com/xuhdev/vim-latex-live-preview/issues/24), currently ```vim-latex-live-preview``` does not support ```python/dyn``` and Vim must be recompiled with Python support. 
-
-
-Screenshot
-----------
-
-![Screenshot with Evince](misc/screenshot-evince.gif)
-
-<!--
-The screenshot is at ./misc/screenshot-evince.gif
--->
+mupdf, evince and okular are known to work well.
 
 ['updatetime']: http://vimdoc.sourceforge.net/htmldoc/options.html#%27updatetime%27
 [evince]: http://projects.gnome.org/evince/
 [okular]: http://okular.kde.org/
+[mupdf]: https://mupdf.com/
