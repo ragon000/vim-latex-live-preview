@@ -107,7 +107,7 @@ EEOOFF
     " eventually fallback to the current file.
     " TODO: emulate -parse-first-line properly
     let l:root_line = substitute(getline(1),
-                \ '\v^\s*\%\s*!tex\s*root\s*\=\s*(.*)\s*$',
+                \ '\v^\s*\%\s*!md\s*root\s*\=\s*(.*)\s*$',
                 \ '\1', '')
     if (a:0 > 0)
         let l:root_file = fnamemodify(a:1, ':p')
@@ -156,16 +156,12 @@ EEOOFF
                 \ fnamemodify(l:root_file, ':t:r') . '.pdf'
 
     let b:livepreview_buf_data['run_cmd'] =
-                \ 'env ' .
-                \       'TEXMFOUTPUT=' . l:tmp_root_dir . ' ' .
-                \       'TEXINPUTS=' . l:tmp_root_dir
-                \                    . ':' . b:livepreview_buf_data['root_dir']
-                \                    . ': ' .
                 \ s:engine . ' ' .
-                \       '-shell-escape ' .
-                \       '-interaction=nonstopmode ' .
-                \       '-output-directory=' . l:tmp_root_dir . ' ' .
-                \       l:root_file
+                \       '-V pagesize=a4 ' .
+                \       '--pdf-engine=pdflatex ' .
+                \       '-o ' . l:tmp_out_file . ' ' .
+                \       l:root_file .
+                \ '; echo "pkill -SIGHUP mupdf; exit 0" | sh'
                 " lcd can be avoided thanks to root_dir in TEXINPUTS
 
     silent call system(b:livepreview_buf_data['run_cmd'])
@@ -185,15 +181,7 @@ EEOOFF
         endfor
 
         " Update compile command with bibliography
-        let b:livepreview_buf_data['run_cmd'] =
-                \       'env ' .
-                \               'TEXMFOUTPUT=' . l:tmp_root_dir . ' ' .
-                \               'TEXINPUTS=' . l:tmp_root_dir
-                \                            . ':' . b:livepreview_buf_data['root_dir']
-                \                            . ': ' .
-                \       'bibtex ' . l:tmp_root_dir . '/*.aux' .
-                \ ' && ' .
-                \       b:livepreview_buf_data['run_cmd']
+        let b:livepreview_buf_data['run_cmd'] = b:livepreview_buf_data['run_cmd']
 
         silent call system(b:livepreview_buf_data['run_cmd'])
     endif
@@ -230,20 +218,13 @@ EEOOFF
     " Get the tex engine
     if exists('g:livepreview_engine')
         let s:engine = g:livepreview_engine
-    else
-        for possible_engine in ['pdflatex', 'xelatex']
-            if executable(possible_engine)
-                let s:engine = possible_engine
-                break
-            endif
-        endfor
     endif
-
+let s:engine = 'pandoc'
     " Get the previewer
     if exists('g:livepreview_previewer')
         let s:previewer = g:livepreview_previewer
     else
-        for possible_previewer in ['evince', 'okular']
+        for possible_previewer in ['mupdf', 'evince', 'okular']
             if executable(possible_previewer)
                 let s:previewer = possible_previewer
                 break
