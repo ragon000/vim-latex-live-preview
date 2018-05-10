@@ -107,6 +107,7 @@ TODO
 ----
 
 - [ ] Make Pandoc arguments settable via a variable
+- [ ] Make a gif to show usage
 
 ['updatetime']: http://vimdoc.sourceforge.net/htmldoc/options.html#%27updatetime%27
 [evince]: http://projects.gnome.org/evince/
