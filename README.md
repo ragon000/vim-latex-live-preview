@@ -103,6 +103,11 @@ let g:livepreview_previewer = 'your_viewer'
 Please note that not every pdf viewer could work with this plugin. Currently
 mupdf, evince and okular are known to work well.
 
+TODO
+----
+
+- [ ] Make Pandoc arguments settable via a variable
+
 ['updatetime']: http://vimdoc.sourceforge.net/htmldoc/options.html#%27updatetime%27
 [evince]: http://projects.gnome.org/evince/
 [okular]: http://okular.kde.org/
