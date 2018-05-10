@@ -61,7 +61,7 @@ Then reload the config and install the new plugin. Run inside `vim`:
 
 ### Manually
 
-Copy `plugin/latexlivepreview.vim` to `~/.vim/plugin`.
+Copy `plugin/pandoclivepreview.vim` to `~/.vim/plugin`.
 
 
 Usage
