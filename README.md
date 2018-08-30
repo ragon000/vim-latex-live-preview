@@ -103,10 +103,20 @@ let g:livepreview_previewer = 'your_viewer'
 Please note that not every pdf viewer could work with this plugin. Currently
 mupdf, evince and okular are known to work well.
 
+### Pandoc Arguments
+
+If you want to use custom pandoc arguments, you can set them by setting `g:livepreview_arguments`
+option in your `.vimrc`:
+
+```vim
+let g:livepreview_arguments = '-V pagesize=a4 --pdf-engine=pdflatex'
+```
+
+
 TODO
 ----
 
-- [ ] Make Pandoc arguments settable via a variable
+- [x] Make Pandoc arguments settable via a variable
 - [ ] Make a gif to show usage
 
 ['updatetime']: http://vimdoc.sourceforge.net/htmldoc/options.html#%27updatetime%27

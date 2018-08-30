@@ -154,15 +154,24 @@ EEOOFF
 
     let l:tmp_out_file = l:tmp_root_dir . '/' .
                 \ fnamemodify(l:root_file, ':t:r') . '.pdf'
-
+    if exists(g:livepreview_arguments)
+    let b:livepreview_buf_data['run_cmd'] =
+                \ s:engine . ' ' . 
+                \ g:livepreview_arguments .
+                \       '-o ' . l:tmp_out_file . ' ' .
+                \       l:root_file .
+                \ '; echo "pkill -SIGHUP mupdf; exit 0" | sh'
+ 
+    else
     let b:livepreview_buf_data['run_cmd'] =
                 \ s:engine . ' ' .
                 \       '-V pagesize=a4 ' .
-                \       '--pdf-engine=pdflatex ' .
+                \       '--pdf-engine=xelatex ' .
                 \       '-o ' . l:tmp_out_file . ' ' .
                 \       l:root_file .
                 \ '; echo "pkill -SIGHUP mupdf; exit 0" | sh'
                 " lcd can be avoided thanks to root_dir in TEXINPUTS
+     endif
 
     silent call system(b:livepreview_buf_data['run_cmd'])
     if v:shell_error != 0
