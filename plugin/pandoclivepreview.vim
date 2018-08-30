@@ -154,7 +154,7 @@ EEOOFF
 
     let l:tmp_out_file = l:tmp_root_dir . '/' .
                 \ fnamemodify(l:root_file, ':t:r') . '.pdf'
-    if exists(g:livepreview_arguments)
+    if exists('g:livepreview_arguments')
     let b:livepreview_buf_data['run_cmd'] =
                 \ s:engine . ' ' . 
                 \ g:livepreview_arguments .
