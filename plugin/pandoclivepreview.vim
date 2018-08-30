@@ -166,7 +166,7 @@ EEOOFF
     let b:livepreview_buf_data['run_cmd'] =
                 \ s:engine . ' ' .
                 \       '-V pagesize=a4 ' .
-                \       '--latex-engine=xelatex --pdf-engine=xelatex --pdf-engine-opt='-output-driver='xdvipdfmx -z3'' ' .
+                \       '--pdf-engine=xelatex ' .
                 \       '-o ' . l:tmp_out_file . ' ' .
                 \       l:root_file .
                 \ '; echo "pkill -SIGHUP mupdf; exit 0" | sh'
