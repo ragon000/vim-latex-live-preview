@@ -167,6 +167,7 @@ EEOOFF
                 \ s:engine . ' ' .
                 \       '-V pagesize=a4 ' .
                 \       '--pdf-engine=pdflatex ' .
+                \       '--listings ' .
                 \       '-o ' . l:tmp_out_file . ' ' .
                 \       l:root_file .
                 \ '; echo "pkill -SIGHUP mupdf; exit 0" | sh'
