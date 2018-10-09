@@ -103,6 +103,8 @@ let g:livepreview_previewer = 'your_viewer'
 Please note that not every pdf viewer could work with this plugin. Currently
 mupdf, evince and okular are known to work well.
 
+- [mupdf][] works best as it can refresh the page without flickering
+
 ### Pandoc Arguments
 
 If you want to use custom pandoc arguments, you can set them by setting `g:livepreview_arguments`
