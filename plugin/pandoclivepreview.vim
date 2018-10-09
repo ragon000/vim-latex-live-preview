@@ -166,7 +166,7 @@ EEOOFF
     let b:livepreview_buf_data['run_cmd'] =
                 \ s:engine . ' ' .
                 \       '-V pagesize=a4 ' .
-                \       '--pdf-engine=pdflatex ' .
+                \       '--pdf-engine=xelatex ' .
                 \       '--listings ' .
                 \       '-o ' . l:tmp_out_file . ' ' .
                 \       l:root_file .
