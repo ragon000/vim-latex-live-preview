@@ -27,7 +27,8 @@ Add the plugin in the vim-plug section of your `~/.vimrc`:
 call plug#begin('~/.vim/plugged')
 [...]
 " A Vim Plugin for Lively Previewing Pandoc PDF Output
-Plug 'ragon000/vim-pandoc-live-preview', { 'for': ['md', 'pandoc'] } " 'pandoc' if using the vim-pandoc plugin
+Plug 'ragon000/vim-pandoc-live-preview', { 'for': ['md', 'pandoc'] } 
+" 'pandoc' if using the vim-pandoc plugin
 [...]
 call plug#end()
 ```
