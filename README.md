@@ -73,20 +73,6 @@ Vim and you should see the live update. The updating time could be set by Vim's
 try to set 'updatetime' to a higher value to make it update less frequently. The
 suggested value of 'updatetime' is `1000`.
 
-If the root file is not the file you are currently editing, you can specify it
-by executing `:LLPStartPreview <root-filename>` or executing `:LLPStartPreview`
-with the following declaration in the first line of your source file:
-
-```latex
-% !TEX root = <root-filename>
-```
-
-The path to the root file can be an absolute path or a relative path, in which
-case it is **relative to the parent directory of the current file**.
-
-:warning: if `<root-filename>` contains special characters (such as space), they
-must be escaped manually.
-
 Configuration
 -------------
 
